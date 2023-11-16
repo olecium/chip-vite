@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css'
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
-import { UploadResult, UploadTaskSnapshot, getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { db } from './firebase';
 import { MessageType } from './common/interfaces';
@@ -125,7 +125,7 @@ const AddEmployee: React.FC = (): JSX.Element => {
                 <label htmlFor="photo">Photo</label>
                 <input type="file" name="photo" onChange={handlePhotoFile} />
             </div>
-            <button onClick={onEmployeeAdd} type="button">Add employee</button>
+            <button onClick={onEmployeeAdd} type="button" className="btn">Add employee</button>
         </div>
     );
 };

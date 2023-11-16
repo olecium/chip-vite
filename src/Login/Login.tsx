@@ -1,16 +1,11 @@
 import { useState } from 'react';
-import { getAuth, User, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from '../redux/hooks';
 import { addMessage } from '../redux/commonSlice';
 import { MessageType } from '../common/interfaces';
 import { useAuth } from './hooks/useAuth';
 
-interface ILoginProps {
-    // handleLogin: (user: User) => void;
-}
-
-const Login: React.FC<ILoginProps> = (props: ILoginProps): JSX.Element => {
+const Login: React.FC = (): JSX.Element => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navigate = useNavigate();
@@ -44,9 +39,16 @@ const Login: React.FC<ILoginProps> = (props: ILoginProps): JSX.Element => {
 
     return (
         <>
-            <input type="text" name="username" onChange={onEmailChange} value={email} />
-            <input type="password" name="password" onChange={onPasswordChange} value={password} />
-            <button onClick={onLogin}>Log in</button>
+            <h1>Log in</h1>
+            <div className="fieldset">
+                <label htmlFor="username">E-mail</label>
+                <input type="text" name="username" onChange={onEmailChange} value={email} />
+            </div>
+            <div className="fieldset">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" onChange={onPasswordChange} value={password} />
+            </div>
+            <button onClick={onLogin} className="btn">Log in</button>
         </>
     );
 };

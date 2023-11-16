@@ -47,9 +47,16 @@ const SignUp: React.FC = (): JSX.Element => {
 
     return (
         <>
-            <input type="text" name="username" onChange={onEmailChange} value={email} />
-            <input type="password" name="password" onChange={onPasswordChange} value={password} />
-            <button onClick={onSignUp}>Sign Up</button>
+            <h1>Sign Up</h1>
+            <div className="fieldset">
+                <label htmlFor="username">E-mail</label>
+                <input type="text" name="username" onChange={onEmailChange} value={email} />
+            </div>
+            <div className="fieldset">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" onChange={onPasswordChange} value={password} />
+            </div>
+            <button onClick={onSignUp} className="btn">Sign Up</button>
         </>
     );
 };

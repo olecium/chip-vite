@@ -87,12 +87,12 @@ const AddTaskForm: React.FC = (): JSX.Element => {
             <div className="fieldset">
                 <label>Assign for:</label>
                 {assignedFor.map((employee, i) =>
-                    <div key={i}>
+                    <div className="fieldset_checkboxes" key={i}>
                         <input type="checkbox" name={"assignedFor"} id={employee.id} value={employee.id} onChange={(event) => onAssignedForChange(event, employee)} />
                         <label htmlFor={employee.id}>{employee.name} {employee.surname}</label>
                     </div>)}
             </div>
-            <button onClick={onTaskAdd}>Add Task</button>
+            <button onClick={onTaskAdd} className="btn">Add Task</button>
         </>
     );
 };

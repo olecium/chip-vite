@@ -5,7 +5,7 @@ const LogoutButton: React.FC = (): JSX.Element => {
     const { signout } = useAuth();
 
     return (
-        <button onClick={() => signout()}>
+        <button onClick={() => signout()} className="btn">
             Log Out
         </button>
     );
