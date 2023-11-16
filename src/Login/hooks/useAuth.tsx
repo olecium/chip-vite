@@ -2,16 +2,15 @@
 // ... and re-render when it changes.
 import { User, signInWithEmailAndPassword } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { IUserInfoType } from "../../common/interfaces/IUserInfo";
+// import { IUserInfoType } from "../../common/interfaces/IUserInfo";
 import { auth } from "../../firebase";
 import { isUndefinedOrNull } from "../../common/utils/typeGuard";
 import { useAppDispatch } from "../../redux/hooks";
 import { addMessage } from "../../redux/commonSlice";
 import { MessageType } from "../../common/interfaces";
-import { User } from 'firebase/auth';
 
 export type IUserType = null | undefined | User;
-export type ISignInType = (email: string, password: string) => Promise<IUserInfoType>;
+export type ISignInType = (email: string, password: string) => Promise<IUserType>;
 export type ISignOutType = () => Promise<void>;
 
 export interface IAuthContext {
@@ -48,16 +47,16 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state
 function useAuthProvider(): IAuthContext {
-    const [user, setUser] = useState<null | User>(null);
+    const [user, setUser] = useState<IUserType>(null);
     const dispatch = useAppDispatch();
 
-    const signin = async (email: string, password: string): Promise<User | null> => {
+    const signin = async (email: string, password: string): Promise<IUserType> => {
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
 
             if (response.user !== null) {
                 setUser(response.user);
-                return response.user;
+                return response.user as IUserType;
             } else {
                 return null;
             }
